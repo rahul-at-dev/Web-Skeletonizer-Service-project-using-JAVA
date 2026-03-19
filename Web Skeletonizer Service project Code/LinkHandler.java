@@ -26,9 +26,16 @@ public class LinkHandler
 	uc = u.openConnection();
 	uc.connect();
 	String ct = uc.getContentType();
-	if (ct == null ||
-	    !(ct.equalsIgnoreCase("text/html") ||
-	      ct.equalsIgnoreCase("text/plain"))) 
+	String ctm = null;
+	if (ct != null) {
+	    int semi = ct.indexOf(';');
+	    ctm = (semi >= 0) ? ct.substring(0, semi) : ct;
+	    ctm = ctm.trim().toLowerCase();
+	}
+	if (ctm == null ||
+	    !((ctm.indexOf("text/html") == 0) ||
+	      (ctm.indexOf("text/plain") == 0) ||
+	      (ctm.indexOf("application/xhtml+xml") == 0)))
 	    {
 		if (uc instanceof HttpURLConnection) 
 		    ((HttpURLConnection)uc).disconnect();
