@@ -1,0 +1,33 @@
+gnu.regexp TODO (1.0.8)
+-----------------------
+These are items that have yet to be implemented or are part of the
+general wish list for gnu.regexp.  You can contribute to this program
+and get your name permanently embedded in the distribution if you care 
+to take on any of these tasks.  See the contact info in the README.
+
+Missing operators:
+ \<, \>  -- word break positional anchors (egrep syntax)
+ \b, \B  -- word break/non-word break positional anchors (Perl5 syntax)
+ (?=...), (?!...) -- positive and negative lookahead assertions (Perl5)
+ [.symbol.]  -- collating symbol (POSIX)
+ [=class=]  -- equivalence class (POSIX)
+
+I18n support:
+ Some POSIX char classes ([:alpha:]) are locale sensitive, others need work
+ Ranges (e.g. [a-z]) should be locale sensitive
+ Should use collation elements, not chars, for things like Spanish "ll"
+
+"Free software needs free manuals" -- you heard the man...
+
+There should be a flag to enforce strict POSIX leftmost-longest matching
+(currently not supported as it's rather inefficient).
+
+gnu.regexp.util.Tests should be fleshed out -- a good starting point
+is the mauve regression test framework that Cygnus, Transvirtual,
+Classpath and others are working on.
+
+Makefile for Win32 (non-Cygwin) systems.
+
+When reading from an InputStream (internally converted to a 
+CharIndexedInputStream) the start-of-line operator will not work in
+multiline mode; a previous character needs to be buffered.
